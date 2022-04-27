@@ -37,7 +37,7 @@
                   <el-input
                     type="text"
                     v-model="formLogin.username"
-                    placeholder="用户名">
+                    placeholder="USERNAME">
                     <i slot="prepend" class="fa fa-user-circle-o"></i>
                   </el-input>
                 </el-form-item>
@@ -45,7 +45,7 @@
                   <el-input
                     type="password"
                     v-model="formLogin.password"
-                    placeholder="密码">
+                    placeholder="PASSWORD">
                     <i slot="prepend" class="fa fa-keyboard-o"></i>
                   </el-input>
                 </el-form-item>
@@ -64,7 +64,7 @@
                   @click="submit"
                   type="primary"
                   class="button-login">
-                  登录
+                  Login
                 </el-button>
               </el-form>
             </el-card>
@@ -156,28 +156,20 @@ export default {
       formLogin: {
         username: 'admin',
         password: 'admin',
-        code: 'v9am'
       },
       // 表单校验
       rules: {
         username: [
           {
             required: true,
-            message: '请输入用户名',
+            message: 'Please Enter Username',
             trigger: 'blur'
           }
         ],
         password: [
           {
             required: true,
-            message: '请输入密码',
-            trigger: 'blur'
-          }
-        ],
-        code: [
-          {
-            required: true,
-            message: '请输入验证码',
+            message: 'Please Enter Password',
             trigger: 'blur'
           }
         ]
@@ -228,7 +220,7 @@ export default {
             })
         } else {
           // 登录表单校验失败
-          this.$message.error('表单校验失败，请检查')
+          this.$message.error('Please Enter the right format')
         }
       })
     }

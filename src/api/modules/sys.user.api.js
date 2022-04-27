@@ -1,4 +1,5 @@
 import { find, assign } from 'lodash'
+import {loginStaff} from "../api";
 
 const users = [
   { username: 'admin', password: 'admin', uuid: 'admin-uuid', name: 'Admin' },
@@ -13,19 +14,20 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
    */
   SYS_USER_LOGIN (data = {}) {
     // 模拟数据
-    mock
-      .onAny('/login')
-      .reply(config => {
-        const user = find(users, tools.parse(config.data))
-        return user
-          ? tools.responseSuccess(assign({}, user, { token: faker.random.uuid() }))
-          : tools.responseError({}, '账号或密码不正确')
-      })
+    return loginStaff(data);
+    // mock
+    //   .onAny('/login')
+    //   .reply(config => {
+    //     const user = find(users, tools.parse(config.data))
+    //     return user
+    //       ? tools.responseSuccess(assign({}, user, { token: faker.random.uuid() }))
+    //       : tools.responseError({}, '账号或密码不正确')
+    //   })
     // 接口请求
-    return requestForMock({
-      url: '/login',
-      method: 'post',
-      data
-    })
+    // return requestForMock({
+    //   url: '/login',
+    //   method: 'post',
+    //   data
+    // })
   }
 })

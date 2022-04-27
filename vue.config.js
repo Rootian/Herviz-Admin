@@ -34,12 +34,21 @@ const pages = undefined
 
 module.exports = {
   // 根据你的实际情况更改这里
-  publicPath,
-  lintOnSave: true,
+
   devServer: {
-    publicPath, // 和 publicPath 保持一致
-    disableHostCheck: process.env.NODE_ENV === 'development' // 关闭 host check，方便使用 ngrok 之类的内网转发工具
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080/api',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+
   },
+  lintOnSave: false,
   css: {
     loaderOptions: {
       // 设置 scss 公用变量文件

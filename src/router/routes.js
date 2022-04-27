@@ -21,6 +21,69 @@ const frameIn = [
         },
         component: _import('system/index')
       },
+      {
+        path: '/userMenu',
+        name: 'userMenu',
+        meta: {
+          auth: true,
+          title: 'UserBoard'
+        },
+        component: _import('user')
+      },
+      {
+        path: '/vehicleMenu',
+        name: 'vehicleMenu',
+        meta: {
+          auth: true,
+          title: 'VehicleBoard'
+        },
+        component: _import('vehicle')
+      },
+      {
+        path: '/orderMenu',
+        name: 'orderMenu',
+        meta: {
+          auth: true,
+          title: 'OrderBoard'
+        },
+        component: _import('order')
+      },
+      {
+        path: '/officeMenu',
+        name: 'officeMenu',
+        meta: {
+          auth: true,
+          title: 'OfficeBoard'
+        },
+        component: _import('office')
+      },
+      {
+        path: '/vehicleClassMenu',
+        name: 'vehicleClassMenu',
+        meta: {
+          auth: true,
+          title: 'VehicleClassBoard'
+        },
+        component: _import('vehicleClass')
+      },
+      {
+        path: '/couponMenu',
+        name: 'couponMenu',
+        meta: {
+          auth: true,
+          title: 'CouponBoard'
+        },
+        component: _import('coupon')
+      },
+      {
+        path: '/page-demo',
+        name: 'page-demo',
+        component: _import('system/page-demo'),
+        meta: {
+          auth: true,
+          title: 'new page'
+        }
+      },
       // 演示页面
       {
         path: 'page1',
