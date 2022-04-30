@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-let $ = axios;
-let base = '/api';
+let base = process.env.VUE_APP_API;
 
 export const getUserList = params => {
   return axios.get(base + '/user/list', {params: params});
@@ -65,4 +64,20 @@ export const deleteVehicleClass = id => {
 
 export const loginStaff = params => {
   return axios.post(base + '/auth/loginStaff', params).then(res => res.data);
+};
+
+export const getCouponList = params => {
+  return axios.get(base + '/coupon/list', {params: params});
+};
+
+export const updateCoupon = params => {
+  return axios.post(base + '/coupon/update', params).then(res => res.data);
+};
+
+export const addCoupon = params => {
+  return axios.post(base + '/coupon/add', params).then(res => res.data);
+};
+
+export const getLastYearRevenue = params => {
+  return axios.get(base + '/chart/lastYearRevenue', {params: params});
 };

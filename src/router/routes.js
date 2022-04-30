@@ -14,10 +14,11 @@ const frameIn = [
     children: [
       // 首页
       {
-        path: 'index',
+        path: '/index',
         name: 'index',
         meta: {
-          auth: true
+          auth: true,
+          title: 'DashBoard'
         },
         component: _import('system/index')
       },

@@ -23,13 +23,25 @@
         <el-col :span="22" :offset="1">
           <el-table :data="dataList" :header-cell-style="{background:'#eee',color:'#606266'}">
             <el-table-column prop="id" label="Vehicle Id" align="center" header-align="center" width="100"></el-table-column>
-            <el-table-column prop="ofcId" label="office Id" align="center" header-align="center"></el-table-column>
+            <el-table-column prop="ofcId" label="office" align="center" header-align="center" width="150">
+              <template slot-scope="scope">
+                <span>{{ getOfficeLabel(scope.row.ofcId) }}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="make" label="Make" align="center" header-align="center"></el-table-column>
             <el-table-column prop="model" label="Model" align="center" header-align="center"></el-table-column>
             <el-table-column prop="year" label="Year" align="center" header-align="center"></el-table-column>
             <el-table-column prop="lpn" label="LPN" width="150" align="center" header-align="center"></el-table-column>
-            <el-table-column prop="curLoc" label="Current Location" width="150" align="center" header-align="center"></el-table-column>
-            <el-table-column prop="classId" label="Class Id" align="center" header-align="center"></el-table-column>
+            <el-table-column prop="curLoc" label="Current Location" width="150" align="center" header-align="center">
+              <template slot-scope="scope">
+                <span>{{ getOfficeLabel(scope.row.curLoc) }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="classId" label="Class" width="120" align="center" header-align="center">
+              <template slot-scope="scope">
+                <span>{{getClassLabel(scope.row.classId)}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="Action" align="center" header-align="center" width="150">
               <template slot-scope="scope">
                 <el-button type="primary" plain size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -57,7 +69,19 @@
                   <el-input v-model="editForm.id" auto-complete="off" :disabled="true"></el-input>
                 </el-form-item>
                 <el-form-item label="Office Id" prop="ofcId">
-                  <el-input v-model="editForm.ofcId" auto-complete="off"></el-input>
+                  <el-select
+                    v-model="editForm.ofcId"
+                    value-key="ofcId"
+                    filterable
+                    reserve-keyword
+                    placeholder="SELECT BELONGING LOCATION">
+                    <el-option
+                      v-for="item in officeList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="Make" prop="make">
                   <el-input v-model="editForm.make" auto-complete="off"></el-input>
@@ -72,10 +96,34 @@
                   <el-input v-model="editForm.lpn" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="Location" prop="curLoc">
-                  <el-input v-model="editForm.curLoc" auto-complete="off"></el-input>
+                  <el-select
+                    v-model="editForm.curLoc"
+                    value-key="curLoc"
+                    filterable
+                    reserve-keyword
+                    placeholder="SELECT CURRENT LOCATION">
+                    <el-option
+                      v-for="item in officeList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="Class Id" prop="classId">
-                  <el-input v-model="editForm.classId" auto-complete="off"></el-input>
+                  <el-select
+                    v-model="editForm.classId"
+                    value-key="classId"
+                    filterable
+                    reserve-keyword
+                    placeholder="SELECT CLASS TYPE">
+                    <el-option
+                      v-for="item in classList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
               </div>
           </el-col>
@@ -96,7 +144,19 @@
                 <el-input v-model="addForm.id" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="Office Id" prop="ofcId">
-                <el-input v-model="addForm.ofcId" auto-complete="off"></el-input>
+                <el-select
+                  v-model="addForm.ofcId"
+                  value-key="ofcId"
+                  filterable
+                  reserve-keyword
+                  placeholder="SELECT BELONGING LOCATION">
+                  <el-option
+                    v-for="item in officeList"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="Make" prop="make">
                 <el-input v-model="addForm.make" auto-complete="off"></el-input>
@@ -111,10 +171,34 @@
                 <el-input v-model="addForm.lpn" auto-complete="off"></el-input>
               </el-form-item>
               <el-form-item label="Location" prop="curLoc">
-                <el-input v-model="addForm.curLoc" auto-complete="off"></el-input>
+                <el-select
+                  v-model="addForm.curLoc"
+                  value-key="curLoc"
+                  filterable
+                  reserve-keyword
+                  placeholder="SELECT CURRENT LOCATION">
+                  <el-option
+                    v-for="item in officeList"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="Class Id" prop="classId">
-                <el-input v-model="addForm.classId" auto-complete="off"></el-input>
+                <el-select
+                  v-model="addForm.classId"
+                  value-key="classId"
+                  filterable
+                  reserve-keyword
+                  placeholder="SELECT CLASS TYPE">
+                  <el-option
+                    v-for="item in classList"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
               </el-form-item>
             </div>
           </el-col>
@@ -135,7 +219,7 @@
 
 <script>
   import {getVehicleList, updateVehicleInfo, deleteVehicle, addVehicle} from "../../api/api";
-
+  import { mapActions } from 'vuex';
 
   var defaultForm = {
     "id":"",
@@ -171,10 +255,57 @@
           editFormRules: {},
           editLoading: false,
 
-          listLoading: false
+          listLoading: false,
+
+          officeList:[],
+          classList:[]
         }
       },
       methods: {
+        ...mapActions('d2admin/office', [
+          'loadOfficeList',
+        ]),
+        ...mapActions('d2admin/vehicleClass', [
+          'loadClassList'
+        ]),
+        getClassList: function () {
+          this.loadClassList().then((res) => {
+            this.classList = [];
+            if (res.data.code !== 200) {
+              return
+            }
+            let result = res.data.data;
+            for (let i = 0; i < result.length; i++) {
+              let record = {"id" : result[i].id, "label" : result[i].type};
+              this.classList.push(record);
+            }
+          })
+        },
+        getClassLabel: function (id) {
+          let c = this.classList.filter(function(p){
+            return p.id === id;
+          });
+          return c[0].label
+        },
+        getOfficeList: function () {
+          this.loadOfficeList().then((res) => {
+            this.officeList = [];
+            if (res.data.code !== 200) {
+              return
+            }
+            let result = res.data.data;
+            for (let i = 0; i < result.length; i++) {
+              let record = {"id" : result[i].id, "label" : result[i].streetAddr + ',' + result[i].city};
+              this.officeList.push(record);
+            }
+          })
+        },
+        getOfficeLabel: function (id) {
+          let office = this.officeList.filter(function(p){
+            return p.id === id;
+          });
+          return office[0].label
+        },
         loadDataList: function () {
           let para = {
             page: this.page,
@@ -278,7 +409,9 @@
         }
       },
       mounted() {
-        this.loadDataList()
+        this.loadDataList();
+        this.getOfficeList();
+        this.getClassList();
       }
     }
 </script>

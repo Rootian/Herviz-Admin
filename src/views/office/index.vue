@@ -22,7 +22,7 @@
       <el-row>
         <el-col :span="22" :offset="1">
           <el-table :data="dataList" :header-cell-style="{background:'#eee',color:'#606266'}">
-            <el-table-column prop="id" label="Vehicle Id" align="center" header-align="center" width="100"></el-table-column>
+            <el-table-column prop="id" label="Office Id" align="center" header-align="center" width="100"></el-table-column>
             <el-table-column prop="streetAddr" label="Street Address" width="130" align="center" header-align="center"></el-table-column>
             <el-table-column prop="phoneNo" label="Phone Number" width="130" align="center" header-align="center"></el-table-column>
             <el-table-column prop="state" label="State" align="center" header-align="center"></el-table-column>
@@ -45,7 +45,7 @@
     </el-card>
 
 
-    <el-dialog title="Edit Vehicle Information" :visible.sync="editFormVisible" :close-on-click-modal="false">
+    <el-dialog title="Edit Office Information" :visible.sync="editFormVisible" :close-on-click-modal="false">
       <el-form :model="editForm" label-width="120px" :rules="editFormRules" ref="editForm">
         <el-row>
           <el-col :span="24">
@@ -78,7 +78,7 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="Add New Vehicle" :visible.sync="addFormVisible" :close-on-click-modal="false">
+    <el-dialog title="Add New Office" :visible.sync="addFormVisible" :close-on-click-modal="false">
       <el-form :model="addForm" label-width="120px" :rules="addFormRules" ref="addForm">
         <el-row>
           <el-col :span="24">

@@ -25,8 +25,16 @@
             <el-table-column prop="vin" label="Vehicle Assigned" width="150" align="center" header-align="center"></el-table-column>
             <el-table-column prop="pDate" label="Pickup Date" width="120" align="center" header-align="center" ></el-table-column>
             <el-table-column prop="dDate" label="Drop Date" width="120" align="center" header-align="center" ></el-table-column>
-            <el-table-column prop="pickupLoc" label="Pickup Location" width="150" align="center" header-align="center"></el-table-column>
-            <el-table-column prop="dropLoc" label="Drop Location" width="120" align="center" header-align="center"></el-table-column>
+            <el-table-column prop="pickupLoc" label="Pickup Location" width="150" align="center" header-align="center">
+              <template slot-scope="scope">
+                <span>{{ getOfficeLabel(scope.row.pickupLoc) }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="dropLoc" label="Drop Location" width="120" align="center" header-align="center">
+              <template slot-scope="scope">
+                <span>{{ getOfficeLabel(scope.row.dropLoc) }}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="sOdometer" label="Start Odometer" width="140" align="center" header-align="center"></el-table-column>
             <el-table-column prop="eOdometer" label="End Odometer" width="120" align="center" header-align="center"></el-table-column>
             <el-table-column prop="odometerLimit" label="Odometer Limit" width="150" align="center" header-align="center"></el-table-column>
@@ -60,13 +68,13 @@
                 <el-input v-model="editForm.id" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="User Id" prop="uId">
-                <el-input v-model="editForm.uId" auto-complete="off"></el-input>
+                <el-input v-model="editForm.uId" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="Class Id" prop="classId">
-                <el-input v-model="editForm.classId" auto-complete="off"></el-input>
+                <el-input v-model="editForm.classId" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="Vehicle Id" prop="vin">
-                <el-input v-model="editForm.vin" auto-complete="off"></el-input>
+                <el-input v-model="editForm.vin" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="Pickup Date" prop="pDate">
                 <el-date-picker
@@ -85,10 +93,34 @@
                 </el-date-picker>
               </el-form-item>
               <el-form-item label="Pickup Location" prop="pickupLoc">
-                <el-input v-model="editForm.pickupLoc" auto-complete="off"></el-input>
+                <el-select
+                  v-model="editForm.pickupLoc"
+                  value-key="pickupLoc"
+                  filterable
+                  reserve-keyword
+                  placeholder="SELECT PICKUP LOCATION">
+                  <el-option
+                    v-for="item in officeList"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="Drop Location" prop="dropLoc">
-                <el-input v-model="editForm.dropLoc" auto-complete="off"></el-input>
+                <el-select
+                  v-model="editForm.dropLoc"
+                  value-key="dropLoc"
+                  filterable
+                  reserve-keyword
+                  placeholder="SELECT DROP LOCATION">
+                  <el-option
+                    v-for="item in officeList"
+                    :key="item.id"
+                    :label="item.label"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="Start Odometer" prop="sOdometer">
                 <el-input v-model="editForm.sOdometer" auto-complete="off"></el-input>
@@ -100,7 +132,7 @@
                 <el-input v-model="editForm.odometerLimit" auto-complete="off"></el-input>
               </el-form-item>
               <el-form-item label="Coupon Id" prop="couponId">
-                <el-input v-model="editForm.couponId" auto-complete="off"></el-input>
+                <el-input v-model="editForm.couponId" auto-complete="off" :disabled="true"></el-input>
               </el-form-item>
               <el-form-item label="Status" prop="status">
                 <el-select v-model="editForm.status" value-key="status" placeholder="select status">
@@ -128,7 +160,8 @@
 
 <script>
   import {getOrderList, updateOrder, cancelOrder} from "../../api/api";
-  import moment from 'moment'
+  import moment from 'moment';
+  import { mapActions } from 'vuex';
 
   var defaultForm = {
     "id":"",
@@ -171,10 +204,34 @@
         editFormRules: {},
         editLoading: false,
 
-        listLoading: false
+        listLoading: false,
+
+        officeList:[]
       }
     },
     methods: {
+      ...mapActions('d2admin/office', [
+        'loadOfficeList'
+      ]),
+      getOfficeList: function () {
+        this.loadOfficeList().then((res) => {
+          this.officeList = [];
+          if (res.data.code !== 200) {
+            return
+          }
+          let result = res.data.data;
+          for (let i = 0; i < result.length; i++) {
+            let record = {"id" : result[i].id, "label" : result[i].streetAddr + ',' + result[i].city};
+            this.officeList.push(record);
+          }
+        })
+      },
+      getOfficeLabel: function (id) {
+        let office = this.officeList.filter(function(p){
+          return p.id === id;
+        });
+        return office[0].label
+      },
       loadDataList: function () {
         let para = {
           page: this.page,
@@ -194,6 +251,7 @@
       handleCurrentChange: function (val) {
         this.page = val;
         this.loadDataList()
+
       },
 
       handleCancel: function(index, row) {
@@ -256,7 +314,8 @@
       }
     },
     mounted() {
-      this.loadDataList()
+      this.loadDataList();
+      this.getOfficeList();
     }
   }
 </script>

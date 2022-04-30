@@ -53,14 +53,14 @@ export default {
       // 判断是否需要确认
       if (confirm) {
         commit('d2admin/gray/set', true, { root: true })
-        MessageBox.confirm('确定要注销当前用户吗', '注销用户', { type: 'warning' })
+        MessageBox.confirm('Are you sure to LOGOUT', 'Log out', { type: 'warning' })
           .then(() => {
             commit('d2admin/gray/set', false, { root: true })
             logout()
           })
           .catch(() => {
             commit('d2admin/gray/set', false, { root: true })
-            Message({ message: '取消注销操作' })
+            Message({ message: 'Cancel Log out' })
           })
       } else {
         logout()

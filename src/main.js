@@ -14,9 +14,11 @@ import router from './router'
 import { menuHeader, menuAside } from '@/menu'
 import { frameInRoutes } from '@/router/routes'
 import util from "./libs/util";
+import VCharts from 'v-charts'
 
 // 核心插件
 Vue.use(d2Admin)
+Vue.use(VCharts)
 Vue.prototype.$http = Vue.$http = http;
 
 new Vue({

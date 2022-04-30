@@ -6,14 +6,15 @@
     <div class="d2-layout-header-aside-content" flex="dir:top">
       <!-- 顶栏 -->
       <div class="d2-theme-header" :style="{ opacity: this.searchActive ? 0.5 : 1 }" flex-box="0" flex>
-        <router-link
-          to="/index"
-          :class="{'logo-group': true, 'logo-transition': asideTransition}"
-          :style="{width: asideCollapse ? asideWidthCollapse : asideWidth}"
-          flex-box="0">
-          <img v-if="asideCollapse" :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/icon-only.png`">
-          <img v-else :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/all.png`">
-        </router-link>
+<!--        <router-link-->
+<!--          to="/index"-->
+<!--          :class="{'logo-group': true, 'logo-transition': asideTransition}"-->
+<!--          :style="{width: asideCollapse ? asideWidthCollapse : asideWidth}"-->
+<!--          flex-box="0">-->
+<!--&lt;!&ndash;          <img v-if="asideCollapse" :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/icon-only.png`">&ndash;&gt;-->
+<!--&lt;!&ndash;          <img v-else :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/all.png`">&ndash;&gt;-->
+<!--        </router-link>-->
+        <img src="./Herviz-Admin-logo.png" style="width: 110px; height: 55px; margin-left: 40px; margin-right: 40px">
         <div class="toggle-aside-btn" @click="handleToggleAside" flex-box="0">
           <d2-icon name="bars"/>
         </div>

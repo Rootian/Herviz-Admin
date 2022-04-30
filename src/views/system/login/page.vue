@@ -16,14 +16,14 @@
         flex="dir:top main:justify cross:stretch box:justify">
         <div class="page-login--content-header">
           <p class="page-login--content-header-motto">
-            时间是一切财富中最宝贵的财富
+            Herviz Admin System
           </p>
         </div>
         <div
           class="page-login--content-main"
           flex="dir:top main:center cross:center">
           <!-- logo -->
-          <img class="page-login--logo" src="./image/logo@2x.png">
+          <img class="page-login--logo" src="./image/Herviz-Admin-logo.png">
           <!-- form -->
           <div class="page-login--form">
             <el-card shadow="never">
@@ -49,16 +49,16 @@
                     <i slot="prepend" class="fa fa-keyboard-o"></i>
                   </el-input>
                 </el-form-item>
-                <el-form-item prop="code">
-                  <el-input
-                    type="text"
-                    v-model="formLogin.code"
-                    placeholder="验证码">
-                    <template slot="append">
-                      <img class="login-code" src="./image/login-code.png">
-                    </template>
-                  </el-input>
-                </el-form-item>
+<!--                <el-form-item prop="code">-->
+<!--                  <el-input-->
+<!--                    type="text"-->
+<!--                    v-model="formLogin.code"-->
+<!--                    placeholder="验证码">-->
+<!--                    <template slot="append">-->
+<!--                      <img class="login-code" src="./image/login-code.png">-->
+<!--                    </template>-->
+<!--                  </el-input>-->
+<!--                </el-form-item>-->
                 <el-button
                   size="default"
                   @click="submit"
@@ -69,39 +69,40 @@
               </el-form>
             </el-card>
             <p
-              class="page-login--options"
-              flex="main:justify cross:center">
-              <span><d2-icon name="question-circle"/> 忘记密码</span>
-              <span>注册用户</span>
+              class="page-login--options" style="display: flex; justify-content: center">
+<!--              <span><d2-icon name="question-circle"/> 忘记密码</span>-->
+              <span>Register</span>
             </p>
             <!-- quick login -->
-            <el-button class="page-login--quick" size="default" type="info" @click="dialogVisible = true">
-              快速选择用户（测试功能）
-            </el-button>
+<!--            <el-button class="page-login&#45;&#45;quick" size="default" type="info" @click="dialogVisible = true">-->
+<!--              快速选择用户（测试功能）-->
+<!--            </el-button>-->
           </div>
         </div>
         <div class="page-login--content-footer">
-          <p class="page-login--content-footer-locales">
-            <a
-              v-for="language in $languages"
-              :key="language.value"
-              @click="onChangeLocale(language.value)">
-              {{ language.label }}
-            </a>
-          </p>
+<!--          <p class="page-login&#45;&#45;content-footer-locales">-->
+<!--            <a-->
+<!--              v-for="language in $languages"-->
+<!--              :key="language.value"-->
+<!--              @click="onChangeLocale(language.value)">-->
+<!--              {{ language.label }}-->
+<!--            </a>-->
+<!--          </p>-->
           <p class="page-login--content-footer-copyright">
             Copyright
             <d2-icon name="copyright"/>
-            2018 D2 Projects 开源组织出品
-            <a href="https://github.com/FairyEver">
-              @FairyEver
+            2022 DB-CarRet OpenSource
+          </p>
+          <p class="page-login--content-footer-copyright">
+            <a href="https://github.com/DB-CarRet">
+              @DB-CarRet
             </a>
           </p>
-          <p class="page-login--content-footer-options">
-            <a href="#">帮助</a>
-            <a href="#">隐私</a>
-            <a href="#">条款</a>
-          </p>
+<!--          <p class="page-login&#45;&#45;content-footer-options">-->
+<!--            <a href="#">帮助</a>-->
+<!--            <a href="#">隐私</a>-->
+<!--            <a href="#">条款</a>-->
+<!--          </p>-->
         </div>
       </div>
     </div>
@@ -139,7 +140,7 @@ export default {
         {
           name: 'Admin',
           username: 'admin',
-          password: 'admin'
+          password: '111'
         },
         {
           name: 'Editor',
