@@ -79,5 +79,31 @@ export const addCoupon = params => {
 };
 
 export const getLastYearRevenue = params => {
-  return axios.get(base + '/chart/lastYearRevenue', {params: params});
+  return axios.get(base + '/chart/lastYearRevenueByMonth', {params: params});
 };
+
+export const getAllRevenue = params => {
+  return axios.get(base + '/chart/allRevenue', {params: params});
+};
+
+export const getAllOrders = params => {
+  return axios.get(base + '/chart/allOrders', {params: params});
+};
+
+export const getLastYearOrderNumByMonth = params => {
+  return axios.get(base + '/chart/lastYearOrderNumByMonth', {params: params});
+};
+
+export const getLastYearRevenueByOffice = params => {
+  return axios.get(base + '/chart/lastYearRevenueByOffice', {params: params});
+};
+
+export const getOrderNumByVehicleClass = params => {
+  return axios.get(base + '/chart/getOrderNumByVehicleClass', {params: params});
+};
+
+export const getPercentageOfRentAndAllCar = params => {
+  return axios.get(base + '/chart/percentageOfRentAndAllCar', {params: params});
+};
+
+

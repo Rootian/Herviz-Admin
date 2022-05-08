@@ -1,6 +1,6 @@
 <template>
   <d2-container>
-    <el-card style="height: 1000px" class="d2-card">
+    <el-card style="height: 1500px" class="d2-card">
       <template slot="header">
         <div style="text-align: center; color: #606266">
           Order Management

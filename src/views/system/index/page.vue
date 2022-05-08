@@ -5,13 +5,13 @@
 <!--        DashBoard-->
 <!--      </div>-->
 <!--    </template>-->
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group @handleSetLineChartData="handleSetLineChartData" :total="totalCount"/>
 
 
 
     <el-card class="d2-card">
       <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-        <line-chart :chart-data="lineChartData" />
+        <line-chart :chart-data="lineChartData" :chart-title="chartTitle"/>
       </el-row>
     </el-card>
 
@@ -42,7 +42,7 @@
   import PieChart from './components/PieChart'
   import DoughNutChart from './components/DoughNutChart'
   import GaugeChart from './components/GaugeChart'
-  import {getLastYearRevenue} from "../../../api/api";
+  import {getLastYearRevenue, getAllRevenue, getLastYearOrderNumByMonth, getLastYearRevenueByOffice, getOrderNumByVehicleClass, getPercentageOfRentAndAllCar, getAllOrders} from "../../../api/api";
 
   const lineChartData = {
     newUser: {
@@ -62,8 +62,8 @@
       data: []
     },
     orders: {
-      title: [130, 140, 141, 142, 145, 150, 160],
-      data: [120, 82, 91, 154, 162, 140, 130]
+      title: [],
+      data: []
     }
   };
 export default {
@@ -78,35 +78,65 @@ export default {
     return {
 
       lineChartData: lineChartData.orders,
-      gaugeChartData: [{value: 70}],
+      gaugeChartData: [{value: 0}],
       pieChartData: [
-        { value: 320, name: 'Industries' },
-        { value: 240, name: 'Technology' },
-        { value: 149, name: 'Forex' },
-        { value: 100, name: 'Gold' },
-        { value: 59, name: 'Forecasts' }
+        // { value: 320, name: 'Industries' },
+        // { value: 240, name: 'Technology' },
+        // { value: 149, name: 'Forex' },
+        // { value: 100, name: 'Gold' },
+        // { value: 59, name: 'Forecasts' }
       ],
       douNutChartData: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
+        // { value: 1048, name: 'Search Engine' },
+        // { value: 735, name: 'Direct' },
+        // { value: 580, name: 'Email' },
+        // { value: 484, name: 'Union Ads' },
+        // { value: 300, name: 'Video Ads' }
+      ],
+      totalCount: {
+        "revenue": 0,
+        "orders": 0,
+        "visits": 0,
+        "newUsers": 0
+      },
+      chartTitle:"",
     }
   },
   methods: {
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
+      this.chartTitle = type
     },
     loadData() {
       getLastYearRevenue().then((res) => {
         lineChartData.earning.data = res.data.data;
         lineChartData.earning.title = res.data.title;
+      });
+      getAllRevenue().then((res) => {
+        this.totalCount.revenue = res.data.data;
+      });
+      getAllOrders().then((res) => {
+        this.totalCount.orders = res.data.data;
+      });
+      getLastYearOrderNumByMonth().then((res) => {
+        lineChartData.orders.data = res.data.data;
+        lineChartData.orders.title = res.data.title;
+      });
+      getLastYearRevenueByOffice().then((res) => {
+        this.douNutChartData = res.data.data;
+      });
+      getOrderNumByVehicleClass().then((res) => {
+        this.pieChartData = res.data.data;
+      });
+      getPercentageOfRentAndAllCar().then((res) => {
+        this.gaugeChartData = [{value : res.data * 100}]
+        // this.gaugeChartData[0].value = res.data * 100;
       })
+
     }
   },
   mounted() {
+    this.lineChartData = lineChartData['orders']
     this.$nextTick(() => {
       this.loadData()
     })

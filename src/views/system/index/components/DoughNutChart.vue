@@ -68,7 +68,7 @@
             bottom: '0',
           },
           title:{
-            text:'Annual Order Amount of Different Office',
+            text:'Annual Revenue of Different Office',
             top: '0',
             left:'center',
             textStyle:{
