@@ -1,4 +1,4 @@
-[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin) 是北美租车网站模板[Herviz](https://github.com/DB-CarRet/Herviz)的后台管理系统，提供对于租车服务的业务管理功能以及业务信息的数据可视化
+[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin) 是北美租车网站模板[Herviz](https://github.com/DB-CarRet/Herviz)的后台管理系统的前端部分，提供对于租车服务的业务管理功能以及业务信息的数据可视化
 
 **中文** | [English](https://github.com/DB-CarRet/Herviz-Admin)
 

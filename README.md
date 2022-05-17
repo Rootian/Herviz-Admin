@@ -1,4 +1,4 @@
-[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin)  is the background management system of the North American car rental website template [Herviz](https://github.com/DB-CarRet/Herviz), providing business management functions for car rental services and data visualization of business information
+[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin)  is the FrontEnd part of background management system of the North American car rental website template [Herviz](https://github.com/DB-CarRet/Herviz), providing business management functions for car rental services and data visualization of business information
 
 [中文](https://github.com/DB-CarRet/Herviz-Admin/blob/master/README.zh.md) | **English**
 
