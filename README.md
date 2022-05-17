@@ -1,24 +1,92 @@
-[D2Admin](https://github.com/d2-projects/d2-admin) is a fully open source and free enterprise back-end product front-end integration solution, using the latest front-end technology stack, javascript files loading of local first screen less than 60kb, has prepared most of the project preparations, and with a lot of sample code to help the management system agile development.
+[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin)  is the background management system of the North American car rental website template [Herviz](https://github.com/DB-CarRet/Herviz), providing business management functions for car rental services and data visualization of business information
 
-[中文](https://github.com/d2-projects/d2-admin-start-kit/blob/master/README.zh.md) | **English**
+[中文](https://github.com/DB-CarRet/Herviz-Admin/blob/master/README.zh.md) | **English**
 
-## Preview
+## Technology Stack
 
-![Deploy preview](https://github.com/d2-projects/d2-admin-start-kit/workflows/Deploy%20preview/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/08ff8c93-f0a8-497a-a081-440b31fb3aa4/deploy-status)](https://app.netlify.com/sites/d2-admin-start-kit/deploys)
+| FrontEnd Framework |          Vue.js           |
+| :----------------: | :-----------------------: |
+| BackEnd Framework  | Springboot + Mybatis plus |
+|    UI Framework    |          D2Admin          |
+| Security Framework |         Sa-token          |
+| Data Visualization |         E-charts          |
+|       Cache        |           Redis           |
 
-The following access addresses are built and deployed by the latest master branch code at the same time. The access effect is completely consistent. Please select the appropriate access link according to your own network situation.
 
-| server | link | server |
-| --- | --- | --- |
-| d2.pub | [d2.pub/d2-admin-start-kit/preview](https://d2.pub/d2-admin-start-kit/preview) | China server |
-| cdn.d2.pub | [cdn.d2.pub/d2-admin-start-kit/preview](https://cdn.d2.pub/d2-admin-start-kit/preview) | qiniu CDN |
-| github | [d2-projects.github.io/d2-admin-start-kit](https://d2-projects.github.io/d2-admin-start-kit) | GitHub pages |
-| netlify | [d2-admin-start-kit.netlify.com](https://d2-admin-start-kit.netlify.com) | Netlify CDN |
 
-## Other synchronous repositories
+##Function Overview
 
-| type | link |
-| --- | --- |
-| gitee | [https://gitee.com/d2-projects/d2-admin](https://gitee.com/d2-projects/d2-admin) |
-| coding | [https://d2-projects.coding.net/p/d2-projects/d/d2-admin/git](https://d2-projects.coding.net/p/d2-projects/d/d2-admin/git) |
+### DashBoard
+
+This page mainly provides data visualization services, which currently include monthly growth statistics of total revenue, total orders, and total users, turnover, order volume, and current inventory of different offices and car brands.
+
+![admin_dashboard1](assets/admin_dashboard1.png)
+
+![admin_dashboard2](assets/admin_dashboard2.png)
+
+
+
+###  Authentication
+
+**Herviz-Admin** uses the open source framework **Sa-token** as the permission framework to provide employee login, registration functions, and user session management functions
+
+![admin_login](assets/admin_login.png)
+
+
+
+### Vehicle Management
+
+Provide management functions for inventory vehicles, you can add/modify vehicle information and change vehicle storage locations
+
+
+
+![admin_vehicle_menu](assets/admin_vehicle_menu.png)
+
+![admin_vehicle_edit](assets/admin_vehicle_edit.png)
+
+
+
+### Order Management
+
+Provide order management functions, including retrieving and viewing user orders, setting mileage fees and other information for orders, modifying orders, etc.
+
+
+
+![admin_order_menu](assets/admin_order_menu.png)
+
+![admin_order_edit](assets/admin_order_edit.png)
+
+
+
+### Office Management
+
+Provide management functions for car rental sites, you can add/modify site information
+
+
+
+![admin_office_menu](assets/admin_office_menu.png)
+
+![admin_office_edit](assets/admin_office_edit.png)
+
+
+
+### Vehicle Class Management
+
+Provide vehicle brand management functions, including adding/modifying vehicle brand information
+
+![admin_vehicleClass_menu](assets/admin_vehicleClass_menu.png)
+
+![admin_vehicleClass_edit](assets/admin_vehicleClass_edit.png)
+
+
+
+### Coupon Management
+
+Provide coupon management functions, including adding/modifying coupons, entering the effective date of the coupon and discount, and the system will automatically generate a random coupon code
+
+
+
+![admin_coupon_menu](assets/admin_coupon_menu.png)
+
+![admin_coupon_add](assets/admin_coupon_add.png)
+

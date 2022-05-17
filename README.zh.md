@@ -1,26 +1,82 @@
-[D2Admin](https://github.com/d2-projects/d2-admin) 是一个完全 **开源免费** 的企业中后台产品前端集成方案，使用最新的前端技术栈，小于 60kb 的本地首屏 js 加载，已经做好大部分项目前期准备工作，并且带有大量示例代码，助力管理系统敏捷开发。
+[Herviz-Admin](https://github.com/DB-CarRet/Herviz-Admin) 是北美租车网站模板[Herviz](https://github.com/DB-CarRet/Herviz)的后台管理系统，提供对于租车服务的业务管理功能以及业务信息的数据可视化
 
-**中文** | [English](https://github.com/d2-projects/d2-admin-start-kit)
+**中文** | [English](https://github.com/DB-CarRet/Herviz-Admin)
 
-## 预览
+## 技术栈
 
-![Deploy preview](https://github.com/d2-projects/d2-admin-start-kit/workflows/Deploy%20preview/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/08ff8c93-f0a8-497a-a081-440b31fb3aa4/deploy-status)](https://app.netlify.com/sites/d2-admin-start-kit/deploys)
+|  前端框架  |          Vue.js           |
+| :--------: | :-----------------------: |
+|   UI框架   |          D2Admin          |
+|  后端框架  | Springboot + Mybatis plus |
+|  权限框架  |         Sa-Token          |
+| 可视化组件 |         E-charts          |
+|  缓存框架  |           Redis           |
 
-下列访问地址均由最新的 master 分支代码同时构建部署，访问效果完全一致，请根据自身网络情况选择合适的访问链接。
+## 功能概览
 
-| 位置 | 链接 | 部署位置 |
-| --- | --- | --- |
-| d2.pub | [preview](https://d2.pub/d2-admin-start-kit/preview) | 中国服务器 |
-| cdn.d2.pub | [preview](https://cdn.d2.pub/d2-admin-start-kit/preview) | 七牛云 CDN |
-| github | [preview](https://d2-projects.github.io/d2-admin-start-kit) | GitHub pages |
-| netlify | [preview](https://d2-admin-start-kit.netlify.com) | Netlify CDN |
+### DashBoard数据可视化
 
-## 其它同步仓库
+这个页面主要提供数据可视化服务，目前包括总收入、总订单、总用户数的按月增长统计，不同office、不同汽车品牌的营业额、订单量，以及当前库存情况
 
-| 位置 | 链接 |
-| --- | --- |
-| 码云 | [https://gitee.com/d2-projects/d2-admin-start-kit](https://gitee.com/d2-projects/d2-admin-start-kit) |
-| coding | [https://d2-projects.coding.net/p/d2-projects/d/d2-admin-start-kit/git](https://d2-projects.coding.net/p/d2-projects/d/d2-admin-start-kit/git) |
+![admin_dashboard1](assets/admin_dashboard1.png)
 
-> 如果您在 github 仓库下载很慢，可以尝试使用我们的码云仓库克隆代码
+![admin_dashboard2](assets/admin_dashboard2.png)
+
+
+
+###  登录验证
+
+Herviz-Admin使用开源框架Sa-token作为权限框架，提供员工登录、注册功能，以及用户session管理功能
+
+![admin_login](../../NYU/Spring2022/db/project/report/admin_login.png)
+
+
+
+### 车辆管理
+
+提供对于库存车辆的管理功能，可以新增/修改车辆信息，更改车辆存储位置
+
+![admin_vehicle_menu](assets/admin_vehicle_menu.png)
+
+![admin_vehicle_edit](assets/admin_vehicle_edit.png)
+
+
+
+### 订单管理
+
+提供订单管理功能，包括检索查看用户订单，为订单设定里程费用等信息，修改订单等。
+
+![admin_order_menu](assets/admin_order_menu.png)
+
+![admin_order_edit](assets/admin_order_edit.png)
+
+
+
+### 站点管理
+
+提供对于租车站点的管理功能，可以新增/修改站点信息
+
+![admin_office_menu](assets/admin_office_menu.png)
+
+![admin_office_edit](assets/admin_office_edit.png)
+
+
+
+### 车辆品牌管理
+
+提供车辆品牌管理功能，包括新增/修改车辆品牌信息
+
+![admin_vehicleClass_menu](assets/admin_vehicleClass_menu.png)
+
+![admin_vehicleClass_edit](assets/admin_vehicleClass_edit.png)
+
+
+
+### 优惠券管理
+
+提供优惠券管理功能，包括优惠券的新增/修改，输入优惠券的生效日期以及折扣，系统会自动生成随机的优惠码
+
+![admin_coupon_menu](assets/admin_coupon_menu.png)
+
+![admin_coupon_add](assets/admin_coupon_add.png)
+
